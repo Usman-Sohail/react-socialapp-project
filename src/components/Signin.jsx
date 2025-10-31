@@ -27,7 +27,12 @@ export default function Signin() {
     <div className="container">
       <div className="signup-card">
         <h2>Sign-in</h2>
-        <form onSubmit={handleSignin}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSignin();
+          }}
+        >
           <label>Email</label>
           <input
             type="email"
