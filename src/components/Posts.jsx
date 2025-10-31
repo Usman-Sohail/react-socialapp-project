@@ -1,11 +1,8 @@
 import { useEffect, useState, useMemo } from "react";
-import Comments from "./Comments";
 import "../posts.css";
 import { Link } from "react-router-dom";
-import EditPost from "./EditPost";
 import "react-toastify/dist/ReactToastify.css";
 import CreatePost from "./CreatePost";
-import UserActions from "./UserActions";
 import { FETCH_POSTS_API } from "./api";
 import PostItem from "./PostItem";
 

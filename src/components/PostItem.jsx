@@ -1,4 +1,3 @@
-import React from "react";
 import EditPost from "./EditPost";
 import UserActions from "./UserActions";
 import Comments from "./Comments";
@@ -45,4 +44,4 @@ function PostItem({
   );
 }
 
-export default React.memo(PostItem);
+export default PostItem;

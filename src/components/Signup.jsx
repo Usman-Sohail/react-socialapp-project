@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FETCH_USERS_API } from "./api";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function Signup() {
 
   useEffect(() => {
     if (users.length === 0) {
-      fetch("https://jsonplaceholder.typicode.com/users")
+      fetch(FETCH_USERS_API)
         .then((res) => res.json())
         .then((data) => {
           setUsers(data);

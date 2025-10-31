@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function EditPost({ post, handleSave, editId, setEditId }) {
+export default function EditPost({ post, handleSave, setEditId }) {
   const [editData, setEditData] = useState({
     title: post.title,
     body: post.body,

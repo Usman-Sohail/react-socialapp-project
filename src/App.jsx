@@ -3,7 +3,7 @@ import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Posts from "./components/Posts";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
