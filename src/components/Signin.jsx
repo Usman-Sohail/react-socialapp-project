@@ -27,12 +27,7 @@ export default function Signin() {
     <div className="container">
       <div className="signup-card">
         <h2>Sign-in</h2>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSignin();
-          }}
-        >
+        <form>
           <label>Email</label>
           <input
             type="email"
@@ -51,7 +46,9 @@ export default function Signin() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button type="submit">Sign-in</button>
+          <button type="button" onClick={handleSignin}>
+            Sign In
+          </button>
         </form>
         <p>
           Don't have an account? <Link to="/signup">Sign-up</Link>
