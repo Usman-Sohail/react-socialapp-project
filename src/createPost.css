@@ -1,0 +1,10 @@
+.current-user {
+  background-color: #eaf4ff;
+  color: #0a58ca;
+  border: 1px solid #cce0ff;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  display: inline-block;
+}

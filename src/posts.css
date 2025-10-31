@@ -1,0 +1,222 @@
+.posts-container {
+  max-width: 50rem;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 15px;
+}
+.new-post {
+  max-width: 50rem;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 15px;
+  align-items: center;
+}
+
+.post {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.post-body {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.post-userId {
+  font-size: 0.9rem;
+  color: #888;
+  text-align: right;
+}
+.btn-delete,
+.btn-edit {
+  border: none;
+  padding: 8px 14px;
+  margin: 5px 6px 0 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-delete {
+  background-color: #dc3545;
+}
+.btn-delete:hover {
+  background-color: #b02a37;
+}
+
+.btn-edit {
+  background-color: #0d6efd;
+}
+.btn-edit:hover {
+  background-color: #0a58ca;
+}
+.new-post {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 1.25rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.new-post p {
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #0a58ca;
+}
+
+.new-post input,
+.new-post textarea {
+  width: 90%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.new-post input:focus,
+.new-post textarea:focus {
+  border-color: #0d6efd;
+}
+
+.new-post textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.btn-create-post {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-create-post:hover {
+  background-color: #0a58ca;
+}
+.edit-post {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.edit-post input,
+.edit-post textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.edit-post textarea {
+  min-height: 80px;
+}
+
+.btn-save,
+.btn-cancel {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-save {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-save:hover {
+  background-color: #218838;
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background-color: #c82333;
+}
+.current-user {
+  color: black;
+}
+div select {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #000000;
+  font-size: 14px;
+  cursor: pointer;
+  min-width: 11.25rem;
+  transition: all 0.2s ease;
+  margin-top: 5px;
+}
+
+div select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0.3125rem rgba(0, 123, 255, 0.5);
+}
+
+div option {
+  padding: 6px;
+  font-size: 14px;
+}
+.btn-logout {
+  background-color: #ff4b4b;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: #e04343;
+  transform: translateY(-1px);
+}
+
+.btn-logout:active {
+  transform: scale(0.98);
+}
+
+.btn-logout:focus {
+  outline: 2px solid #ffa6a6;
+  outline-offset: 2px;
+}

@@ -1,0 +1,79 @@
+body {
+  background-color: #1c3955;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signup-card {
+  background: #000000;
+  padding: 2rem;
+  width: 30rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.signup-card h2 {
+  text-align: center;
+  color: #007bff;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.signup-card label {
+  font-weight: 500;
+  color: #f9f900;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.signup-card input {
+  width: 90%;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  transition: border 0.3s;
+  background-color:rgb(220, 245, 244);
+  color: black;
+}
+
+.signup-card input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.signup-card button {
+  width: 50%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.signup-card button:hover {
+  background-color: #0056b3;
+}
+
+.signup-card p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+.signup-card a {
+  color: #00ff11;
+  text-decoration: none;
+}
