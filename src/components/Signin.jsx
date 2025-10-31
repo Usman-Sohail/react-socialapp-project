@@ -10,7 +10,6 @@ export default function Signin() {
   const navigate = useNavigate();
 
   function handleSignin() {
-    // e.preventDefault();
     const savedUsers = JSON.parse(localStorage.getItem("users"));
     const userFound = savedUsers?.find((user) => {
       return user.email === email && user.password === password;
