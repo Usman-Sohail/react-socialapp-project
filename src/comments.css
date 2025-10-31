@@ -15,6 +15,7 @@
   font-size: 1.2rem;
   text-align: left;
 }
+
 .comment-input {
   width: 90%;
   padding: 10px 12px;
@@ -79,6 +80,7 @@
   color: #555;
   font-style: italic;
 }
+
 h5 {
   color: #007bff;
 }

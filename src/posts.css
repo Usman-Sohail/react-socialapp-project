@@ -23,16 +23,12 @@
   padding: 15px 20px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  word-wrap: break-word;
   overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 .post-title,
 .post-body {
-  word-break: break-word;
   overflow-wrap: break-word;
-  white-space: pre-wrap;
 }
 
 .post-title {
@@ -54,6 +50,7 @@
   color: #888;
   text-align: right;
 }
+
 .btn-delete,
 .btn-edit {
   border: none;
@@ -69,6 +66,7 @@
 .btn-delete {
   background-color: #dc3545;
 }
+
 .btn-delete:hover {
   background-color: #b02a37;
 }
@@ -76,9 +74,11 @@
 .btn-edit {
   background-color: #0d6efd;
 }
+
 .btn-edit:hover {
   background-color: #0a58ca;
 }
+
 .new-post {
   background: #fff;
   border: 1px solid #ddd;
@@ -131,6 +131,7 @@
 .btn-create-post:hover {
   background-color: #0a58ca;
 }
+
 .edit-post {
   display: flex;
   flex-direction: column;
@@ -162,7 +163,7 @@
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .btn-save {
@@ -185,6 +186,7 @@
 .current-user {
   color: black;
 }
+
 div select {
   padding: 6px 12px;
   border: 1px solid #ccc;
@@ -198,7 +200,6 @@ div select {
 }
 
 div select:focus {
-  outline: none;
   border-color: #007bff;
   box-shadow: 0 0 0.3125rem rgba(0, 123, 255, 0.5);
 }
@@ -207,6 +208,7 @@ div option {
   padding: 6px;
   font-size: 14px;
 }
+
 .btn-logout {
   background-color: #ff4b4b;
   color: white;
@@ -221,13 +223,4 @@ div option {
 .btn-logout:hover {
   background-color: #e04343;
   transform: translateY(-1px);
-}
-
-.btn-logout:active {
-  transform: scale(0.98);
-}
-
-.btn-logout:focus {
-  outline: 2px solid #ffa6a6;
-  outline-offset: 2px;
 }
