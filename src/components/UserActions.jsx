@@ -5,6 +5,11 @@ export default function UserActions({ post, posts, setPosts, handleEdit }) {
   const users = JSON.parse(localStorage.getItem("users")) || [];
 
   function handleAuthorizeButton(selectedPost, userId) {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) {
+      toast.error("You must be signed in to authorize users!");
+      return;
+    }
     const updatedPosts = posts.map((p) => {
       if (p.id === selectedPost.id) {
         const alreadyAuthorized = p.authorizedUsers?.includes(userId);
@@ -22,7 +27,16 @@ export default function UserActions({ post, posts, setPosts, handleEdit }) {
     setPosts(updatedPosts);
     localStorage.setItem("posts", JSON.stringify(updatedPosts));
   }
+  function userLoggedIn() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    return currentUser ? true : false;
+  }
   function handleDelete(id) {
+    if(!userLoggedIn()){
+      toast.warning("Kindly Sign-in to delete posts. Session Expired");
+      return;
+    }
     const updatedPosts = posts.filter((p) => p.id !== id);
     setPosts(updatedPosts);
     localStorage.setItem("posts", JSON.stringify(updatedPosts));

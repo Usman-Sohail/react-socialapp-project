@@ -1,6 +1,7 @@
 import EditPost from "./EditPost";
 import UserActions from "./UserActions";
 import Comments from "./Comments";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 function PostItem({
   post,
@@ -36,8 +37,9 @@ function PostItem({
               handleEdit={handleEdit}
             />
           )}
-
-          <Comments postObj={post} />
+          <ErrorBoundary>
+            <Comments postObj={post} />
+          </ErrorBoundary>
         </>
       )}
     </div>

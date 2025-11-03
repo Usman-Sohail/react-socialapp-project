@@ -41,7 +41,7 @@ body {
   border-radius: 6px;
   margin-bottom: 1rem;
   transition: border 0.3s;
-  background-color:rgb(220, 245, 244);
+  background-color: rgb(220, 245, 244);
   color: black;
 }
 
@@ -76,4 +76,11 @@ body {
 .signup-card a {
   color: #00ff11;
   text-decoration: none;
+}
+.hint {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  display: block;
 }

@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function Signin() {
   const [email, setEmail] = useState("usman@gmail.com");
-  const [password, setPassword] = useState("usman");
+  const [password, setPassword] = useState("Usman123");
   const navigate = useNavigate();
 
   function handleSignin() {

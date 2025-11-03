@@ -1,12 +1,14 @@
 import { useEffect, useState, useMemo } from "react";
 import "../posts.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import CreatePost from "./CreatePost";
 import { FETCH_POSTS_API } from "./api";
 import PostItem from "./PostItem";
+import { toast } from "react-toastify";
 
 export default function Posts() {
+  const navigate = useNavigate();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const [posts, setPosts] = useState(
@@ -14,7 +16,11 @@ export default function Posts() {
   );
   const [editId, setEditId] = useState(null);
   const reversedPosts = useMemo(() => [...posts].reverse(), [posts]);
+  function userLoggedIn() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
+    return currentUser ? true : false;
+  }
   useEffect(() => {
     if (posts.length === 0) {
       fetch(FETCH_POSTS_API)
@@ -28,19 +34,44 @@ export default function Posts() {
   });
 
   function handleEdit(post) {
-    setEditId(post.id);
+    if (userLoggedIn()) {
+      setEditId(post.id);
+    } else {
+      toast.warning("Kindly Sign-in to edit posts. Session Expired");
+    }
   }
 
   function handleSave(id, editData) {
+    if (!userLoggedIn()) {
+      toast.warning("Kindly Sign-in to save posts. Session Expired");
+      return;
+    }
+
+    if (!editData.title.trim() || !editData.body.trim()) {
+      toast.error("Title or body cannot be empty!");
+      return;
+    }
+
     const updatedPosts = posts.map((p) =>
       p.id === id ? { ...p, title: editData.title, body: editData.body } : p
     );
+
     setPosts(updatedPosts);
     localStorage.setItem("posts", JSON.stringify(updatedPosts));
     setEditId(null);
+    toast.success("Post updated successfully!");
   }
 
   function handleLogout() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) {
+      toast.info(
+        "No user is currently signed in. Redirecting to Sign-in page."
+      );
+      navigate("/signin");
+      return;
+    }
+
     localStorage.removeItem("currentUser");
     window.location.reload();
   }

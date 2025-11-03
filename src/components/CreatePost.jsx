@@ -11,9 +11,16 @@ export default function CreatePost({ posts, setPosts }) {
     userId: currentUser?.id,
     title: "",
     body: "",
-    authorizedUsers: [],
+    authorizedUsers: [currentUser?.id],
   });
+
   function handleCreatePost() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    if (!currentUser) {
+      toast.error("You must be signed in to create a post!");
+      return;
+    }
     if (!post.title.trim() || !post.body.trim()) {
       toast.error("Please fill in both fields!");
       return;
@@ -36,7 +43,10 @@ export default function CreatePost({ posts, setPosts }) {
   }
   return (
     <div className="new-post">
-      <h5 className="current-user">Signed in as {currentUser?.username}</h5>
+      <h5 className="current-user">
+        {currentUser ? `Signed in as ${currentUser.username}` : "Not logged in"}
+      </h5>
+
       <p>Create Post</p>
 
       <input

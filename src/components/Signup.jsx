@@ -10,7 +10,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("usman");
   const [email, setEmail] = useState("usman@gmail.com");
-  const [password, setPassword] = useState("usman");
+  const [password, setPassword] = useState("Usman123");
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("users")) || []
   );
@@ -25,19 +25,33 @@ export default function Signup() {
         })
         .catch((err) => console.error("Error fetching users:", err));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleSignup() {
-
     if (!username || !email || !password) {
       toast.error("All fields are required.");
+      return;
+    }
+
+    const usernameRegex = /^[a-zA-Z0-9]{3,15}$/;
+    if (!usernameRegex.test(username)) {
+      toast.error("Username must be 3-15 characters and alphanumeric only.");
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast.error("Please enter a valid email.");
+      return;
+    }
 
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must be 8+ chars, include 1 uppercase, 1 lowercase & 1 number."
+      );
       return;
     }
 
@@ -63,7 +77,7 @@ export default function Signup() {
     setUsers(updatedUserList);
     localStorage.setItem("users", JSON.stringify(updatedUserList));
 
-    alert("Sign-up Successful!");
+    toast.success("Sign-up Successful!");
     navigate("/signin");
   }
 
@@ -72,7 +86,6 @@ export default function Signup() {
       <div className="signup-card">
         <h2>Sign-up</h2>
 
-
         <label>Name</label>
         <input
           type="text"
@@ -80,6 +93,10 @@ export default function Signup() {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        <small className="hint">
+          Must be 3-15 characters, only letters and numbers. Cannot be only
+          numbers
+        </small>
 
         <label>Email</label>
         <input
@@ -96,6 +113,9 @@ export default function Signup() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <small className="hint">
+          At least 8 chars, include 1 uppercase, 1 lowercase, and 1 number.
+        </small>
 
         <button onClick={handleSignup}>Sign-up</button>
 

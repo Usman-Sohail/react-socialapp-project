@@ -43,7 +43,24 @@ export default function Comments({ postObj }) {
   function handleComments() {
     setToggleComments((prev) => !prev);
   }
+  function userLoggedIn() {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    return currentUser ? true : false;
+  }
+  if (userLoggedIn() === false) {
+    throw new Error("User not logged in");
+  }
   function handleAddComment(commentState) {
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    const postExists = posts.some((post) => post.id === commentState.postId);
+
+    if (!postExists) {
+      throw new Error(
+        "Cannot add comment. Post expired or removed. Reloading... "
+      );
+    }
+
     const newComment = {
       postId: commentState.postId,
       id: uuidv4(),
@@ -51,7 +68,11 @@ export default function Comments({ postObj }) {
       email: commentState.email,
       body: commentState.body,
     };
-    if (newComment.body.trim() === "") return;
+
+    if (newComment.body.trim() === "") {
+      toast.warning("Comment cannot be empty!");
+      return;
+    }
 
     const updatedComments = [...comments, newComment];
     setComments(updatedComments);
@@ -59,10 +80,9 @@ export default function Comments({ postObj }) {
       `comments-${postObj.id}`,
       JSON.stringify(updatedComments)
     );
-    setCommentState({
-      ...commentState,
-      body: "",
-    });
+    setCommentState({ ...commentState, body: "" });
+
+    toast.success("Comment added successfully!");
   }
 
   function handleDelete(id) {
@@ -80,8 +100,19 @@ export default function Comments({ postObj }) {
     setEditData(comment.body);
   }
   function handleSave(commentId) {
+    if (!editData.trim()) {
+      toast.error("Comment cannot be empty!");
+      return;
+    }
+
+    const originalComment = comments.find((c) => c.id === commentId);
+    if (originalComment && originalComment.body === editData.trim()) {
+      toast.info("No changes made to the comment.");
+      return;
+    }
+
     const updatedComments = comments.map((c) =>
-      c.id === commentId ? { ...c, body: editData } : c
+      c.id === commentId ? { ...c, body: editData.trim() } : c
     );
 
     setComments(updatedComments);
@@ -91,10 +122,13 @@ export default function Comments({ postObj }) {
     );
 
     setEditId(null);
+    toast.success("Comment updated successfully!");
   }
+
   function checkAuthorized(post) {
-    return post.authorizedUsers?.includes(String(currentUser.id));
+    return post.authorizedUsers?.includes(String(currentUser?.id));
   }
+
   return (
     <div className="comments">
       <h4>Comments</h4>
@@ -112,6 +146,7 @@ export default function Comments({ postObj }) {
       <button
         className="btn-add-comment"
         onClick={() => handleAddComment(commentState)}
+        hidden={!checkAuthorized(postObj)}
       >
         send
       </button>
