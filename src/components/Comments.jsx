@@ -6,6 +6,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { FETCH_COMMENTS_API } from "./api";
 
 export default function Comments({ postObj }) {
+  const [error, setError] = useState(null);
+
+  if (error) throw error;
+
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const [comments, setComments] = useState(
@@ -48,17 +52,32 @@ export default function Comments({ postObj }) {
     return currentUser ? true : false;
   }
   if (userLoggedIn() === false) {
-    throw new Error("User not logged in");
+    throw new Error("User not logged in or Session expired. Reloading...");
   }
+  function doesCommentExist(postId, commentId) {
+    const storedComments =
+      JSON.parse(localStorage.getItem(`comments-${postId}`)) || [];
+    return storedComments.some((comment) => comment.id === commentId);
+  }
+
   function handleAddComment(commentState) {
+    const storedComments =
+      JSON.parse(localStorage.getItem(`comments-${commentState.postId}`)) || [];
+    if (storedComments.length < 0) {
+      setComments([]);
+    }
+
     const posts = JSON.parse(localStorage.getItem("posts")) || [];
 
     const postExists = posts.some((post) => post.id === commentState.postId);
 
     if (!postExists) {
-      throw new Error(
-        "Cannot add comment. Post expired or removed. Reloading... "
+      localStorage.removeItem(`comments-${postObj.id}`);
+
+      setError(
+        new Error("Cannot add comment. Post expired or removed. Reloading...")
       );
+      return;
     }
 
     const newComment = {
@@ -73,8 +92,8 @@ export default function Comments({ postObj }) {
       toast.warning("Comment cannot be empty!");
       return;
     }
+    const updatedComments = [...storedComments, newComment];
 
-    const updatedComments = [...comments, newComment];
     setComments(updatedComments);
     localStorage.setItem(
       `comments-${postObj.id}`,
@@ -86,6 +105,12 @@ export default function Comments({ postObj }) {
   }
 
   function handleDelete(id) {
+    if (!doesCommentExist(postObj.id, id)) {
+      toast.error("Comment not found or deleted. Reoading...");
+      setTimeout(() => window.location.reload(), 3000);
+      return;
+    }
+
     const updatedComments = comments.filter((c) => c.id !== id);
     setComments(updatedComments);
     localStorage.setItem(
@@ -96,10 +121,19 @@ export default function Comments({ postObj }) {
   }
 
   function handleEdit(comment) {
+    if (!doesCommentExist(postObj.id, comment.id)) {
+      setTimeout(() => window.location.reload(), 3000);
+      toast.error("Comment not found or deleted. Reloading...");
+    }
     setEditId(comment.id);
     setEditData(comment.body);
   }
   function handleSave(commentId) {
+    if (!doesCommentExist(postObj.id, commentId)) {
+      toast.error("Comment not found or deleted.");
+
+      return;
+    }
     if (!editData.trim()) {
       toast.error("Comment cannot be empty!");
       return;

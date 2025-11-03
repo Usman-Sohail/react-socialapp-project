@@ -25,6 +25,7 @@ export default function Signin() {
   }
   return (
     <div className="container">
+      <p>v1.6</p>
       <div className="signup-card">
         <h2>Sign-in</h2>
         <form>

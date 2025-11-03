@@ -1,0 +1,9 @@
+.error-boundary-container {
+  padding: 1rem;
+  background: #000000ff;
+  color: red;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}

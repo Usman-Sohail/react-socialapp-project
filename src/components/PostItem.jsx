@@ -26,7 +26,7 @@ function PostItem({
             posted by:{" "}
             {currentUser?.id === post.userId
               ? "You"
-              : users.find((u) => u.id === post.userId)?.username || "Unknown"}
+              : users.find((u) => u.id === post.userId)?.username || "Deleted User"}
           </p>
 
           {currentUser?.id === post.userId && (
