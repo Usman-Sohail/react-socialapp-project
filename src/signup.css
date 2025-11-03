@@ -7,6 +7,7 @@ body {
 
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -83,4 +84,14 @@ body {
   margin-top: 2px;
   margin-bottom: 8px;
   display: block;
+}
+footer {
+  text-align: center;
+  padding: 12px 0;
+  font-size: 0.8rem;
+  color: #999;
+  background-color: transparent;
+  border-top: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 0.05em;
 }

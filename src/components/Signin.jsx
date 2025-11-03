@@ -25,7 +25,6 @@ export default function Signin() {
   }
   return (
     <div className="container">
-      <p>v1.6</p>
       <div className="signup-card">
         <h2>Sign-in</h2>
         <form>
@@ -55,6 +54,7 @@ export default function Signin() {
           Don't have an account? <Link to="/signup">Sign-up</Link>
         </p>
       </div>
+      <footer>v2.0</footer>
     </div>
   );
 }
